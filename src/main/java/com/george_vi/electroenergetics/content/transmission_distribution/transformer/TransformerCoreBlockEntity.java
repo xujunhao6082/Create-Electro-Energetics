@@ -34,7 +34,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -69,7 +68,7 @@ public class TransformerCoreBlockEntity extends SmartBlockEntity implements IHav
                         new ValueSettingsFormatter(ValueSettings::format));
             }
         };
-        turns.between(1, 100);
+        turns.between(1, 150);
         turns.value = 10;
         turns.withCallback(i -> this.updateTurns());
         behaviours.add(turns);
@@ -142,7 +141,6 @@ public class TransformerCoreBlockEntity extends SmartBlockEntity implements IHav
     @OnlyIn(Dist.CLIENT)
     protected void tickAudio() {
         Direction facing = getBlockState().getValue(TransformerCoreBlock.FACING);
-        BlockPos otherPos = worldPosition.relative(facing);
 
         if (facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE)
             return;
@@ -156,7 +154,7 @@ public class TransformerCoreBlockEntity extends SmartBlockEntity implements IHav
                 soundInstance.setVolume((float) Mth.clamp(power / 800000, 0.02, 0.125));
                 soundInstance.keepAlive();
             }
-        } else if (soundInstance != null);
+        }
 
     }
 
