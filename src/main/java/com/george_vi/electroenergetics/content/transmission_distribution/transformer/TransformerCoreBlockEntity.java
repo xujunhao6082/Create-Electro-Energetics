@@ -69,7 +69,7 @@ public class TransformerCoreBlockEntity extends SmartBlockEntity implements IHav
                         new ValueSettingsFormatter(ValueSettings::format));
             }
         };
-        turns.between(1, 100);
+        turns.between(1, 150);
         turns.value = 10;
         turns.withCallback(i -> this.updateTurns());
         behaviours.add(turns);
